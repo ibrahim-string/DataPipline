@@ -7,8 +7,17 @@ import { Rng } from '@/lib/sim/rng';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
-/** Vercel caps a streaming function; the client reconnects when it expires. */
-export const maxDuration = 300;
+/**
+ * 60 s is the ceiling that every Vercel plan allows without Fluid Compute, so
+ * this deploys anywhere. Raising it past a plan's limit fails the build, not
+ * just the request — not a trade worth making for a demo.
+ *
+ * The scripted demo episode is 45 s, so it always completes inside one
+ * connection. When the ceiling is hit mid-episode the browser's EventSource
+ * reconnects on its own and the dashboard shows RECONNECTING rather than
+ * pretending nothing happened.
+ */
+export const maxDuration = 60;
 
 const TICK_MS = 120;
 const GAP_BETWEEN_EPISODES_MS = 3_000;

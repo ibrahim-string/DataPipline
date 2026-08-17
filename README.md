@@ -63,7 +63,7 @@ them is the actual work, and that is what I wanted to demonstrate.
 
 **Live:** _(deploy to Vercel and paste the URL here)_
 
-Open **Live Simulator → Run 75-second demo**. A scripted fault sequence plays out in real time:
+Open **Live Simulator → Run 45-second demo**. A scripted fault sequence plays out in real time:
 
 | t     | What happens                                                             |
 | ----- | ------------------------------------------------------------------------ |
@@ -73,7 +73,7 @@ Open **Live Simulator → Run 75-second demo**. A scripted fault sequence plays 
 | 28 s  | LiDAR drops out for 1.35 s → **breaks the dropout gate**                 |
 | 36 s  | LiDAR emits negative / out-of-spec ranges → validity falls               |
 | 40 s  | Publisher re-emits sequence IDs → duplicates appear                      |
-| 50 s  | Episode closes → **REJECTED**, with the reasons, into the registry       |
+| 45 s  | Episode closes → **REJECTED**, with the reasons, into the registry       |
 
 The faults are injected into the generator exactly like randomly-chosen ones. Nothing in the
 detection path is special-cased for the demo, and
@@ -279,14 +279,32 @@ npm run build
 `data/catalog.json` is committed, so `npm run seed` is only needed if you change the generator or
 the thresholds. The whole app is self-contained: **no database, no API keys, no external services.**
 
-### Deployment
+### Deploying to Vercel
 
-Deploys to Vercel with no configuration — import the repo and it builds. There are no required
-environment variables; `.env.example` documents the optional ones that only affect the seed job.
+1. Push the repo to GitHub.
+2. In Vercel, **Add New → Project** and import it.
+3. Accept every default and click **Deploy**.
 
-The live stream uses Server-Sent Events from a Node runtime route with `maxDuration = 300`. When
-that ceiling is reached the browser's `EventSource` reconnects on its own and the dashboard shows
-`RECONNECTING` rather than pretending nothing happened.
+That's the whole process. Framework detection picks up Next.js, the build command is `next build`,
+and **there are no environment variables to set** — `.env.example` documents a few that only affect
+the offline seed job. There is no database, no API key and no external service, so nothing can be
+misconfigured.
+
+The reason it needs no configuration is that `data/catalog.json` is committed. The 180 episodes are
+generated ahead of time by `npm run seed`, not at request time, so the deployed app does no
+simulation work on a cold start — it reads a snapshot.
+
+Two deployment details worth knowing:
+
+- **The SSE route is capped at `maxDuration = 60`.** That's the ceiling every Vercel plan allows
+  without Fluid Compute, so this deploys on a free Hobby account unchanged. Setting it higher than
+  your plan permits fails the *build*, not just the request. The scripted demo is 45 s, so it always
+  completes inside one connection; if you're on Fluid Compute or Pro you can raise it in
+  `app/api/stream/route.ts` for longer continuous sessions.
+- **When the stream is cut, the client recovers.** `EventSource` reconnects on its own and the
+  dashboard shows `RECONNECTING` rather than silently freezing on stale numbers.
+
+Node 20.9+ is required (pinned in `engines`); Vercel's default runtime already satisfies it.
 
 ---
 

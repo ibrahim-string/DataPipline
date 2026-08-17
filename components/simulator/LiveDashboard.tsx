@@ -108,7 +108,7 @@ export function LiveDashboard() {
           )}
         >
           {mode === 'demo' ? <CircleStop size={15} /> : <Rocket size={15} />}
-          {mode === 'demo' ? 'Stop demo' : 'Run 75-second demo'}
+          {mode === 'demo' ? 'Stop demo' : 'Run 45-second demo'}
         </button>
 
         <button
@@ -143,7 +143,7 @@ export function LiveDashboard() {
           The server generates synthetic multimodal telemetry for one robot and streams it over
           Server-Sent Events in real time. Your browser then runs the pipeline — validation,
           synchronization, quality scoring, episode assembly — using the exact same modules as the
-          offline batch job. The <strong>75-second demo</strong> follows a scripted fault sequence so
+          offline batch job. The <strong>45-second demo</strong> follows a scripted fault sequence so
           you can watch a healthy episode degrade and get rejected, with reasons.
         </Note>
       )}

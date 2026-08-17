@@ -5,22 +5,27 @@ import type { EpisodePlan, Fault } from './generator';
  * The scripted demo episode.
  *
  * Everything else in the simulator is randomly generated; this one is written by
- * hand so a first-time viewer sees the whole story in about 75 seconds, in an
+ * hand so a first-time viewer sees the whole story in about 45 seconds, in an
  * order that makes sense:
  *
  *   t+0   clean multimodal ingest, quality ~99
- *   t+11  camera drops out for 0.9 s   → HIGH alert, gates still pass
+ *   t+11  camera drops out for 0.72 s  → HIGH alert, gates still pass
  *   t+17  IMU clock starts drifting     → sync deviation climbs, score falls
  *   t+28  LiDAR drops out for 1.35 s    → CRITICAL alert, breaks the dropout gate
  *   t+36  LiDAR emits invalid ranges    → validity falls
  *   t+40  publisher re-emits events     → duplicates appear
- *   t+50  episode ends                  → REJECTED, with reasons, into the registry
+ *   t+45  episode ends                  → REJECTED, with reasons, into the registry
  *
  * The faults are injected into the generator exactly like random ones; nothing
  * about the detection path is special-cased for the demo.
  */
 
-export const DEMO_DURATION_S = 50;
+/**
+ * 45 s, not 50: the streaming route is capped at 60 s so it deploys on any
+ * Vercel plan, and the whole scripted episode has to finish inside one
+ * connection with margin for cold start.
+ */
+export const DEMO_DURATION_S = 45;
 export const DEMO_ROBOT_ID = 'robot-001';
 
 const DEMO_FAULTS: Fault[] = [
@@ -103,5 +108,5 @@ export const DEMO_TIMELINE: Array<{ at: number; title: string; detail: string }>
   { at: 28, title: 'LiDAR dropout', detail: '1.35 s gap — past the 1 s gate. The episode can no longer be accepted.' },
   { at: 36, title: 'Invalid LiDAR ranges', detail: 'Negative and out-of-spec values; validity falls.' },
   { at: 40, title: 'Duplicate events', detail: 'The publisher re-emits sequence IDs it already sent.' },
-  { at: 50, title: 'Episode closes', detail: 'Quality engine runs, rejects the episode, and records why.' },
+  { at: 45, title: 'Episode closes', detail: 'Quality engine runs, rejects the episode, and records why.' },
 ];
