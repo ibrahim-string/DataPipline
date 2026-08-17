@@ -17,11 +17,13 @@ export default function PlatformLayout({ children }: { children: ReactNode }) {
             <span className="flex h-6 w-6 items-center justify-center rounded bg-accent/15 text-[11px] font-bold text-accent">
               EL
             </span>
-            <span className="hidden sm:inline">Omakase ELA Lab</span>
+            <span className="hidden sm:inline">ELA Lab</span>
           </Link>
 
+          {/* Authorship sits in the header, not just the footer: the first thing
+              a reader should learn is that this is an independent build. */}
           <span className="hidden rounded border border-line-strong px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-ink-dim md:inline">
-            Independent POC · synthetic data
+            An independent build for Omakase Robotics · by Ibrahim
           </span>
 
           <div className="ml-auto flex items-center gap-4">
@@ -49,8 +51,8 @@ export default function PlatformLayout({ children }: { children: ReactNode }) {
           <div className="sticky top-20">
             <SideNav />
             <div className="mt-6 rounded-md border border-line bg-surface px-3 py-2.5 text-[11px] leading-relaxed text-ink-dim">
-              Synthetic telemetry only. No robot, vendor or operator data is used
-              anywhere in this project.
+              A personal project by Ibrahim. Synthetic telemetry only — no robot,
+              vendor or operator data is used anywhere in it.
             </div>
           </div>
         </aside>
@@ -61,8 +63,8 @@ export default function PlatformLayout({ children }: { children: ReactNode }) {
       <footer className="border-t border-line px-4 py-5">
         <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-between gap-3 text-[11px] text-ink-dim">
           <p>
-            Independent portfolio project inspired by publicly available robotics
-            data-engineering challenges. Not affiliated with Omakase Robotics.
+            An independent project built by Ibrahim, inspired by publicly available
+            robotics data-engineering challenges. Not affiliated with Omakase Robotics.
           </p>
           <p>
             Built by Ibrahim ·{' '}

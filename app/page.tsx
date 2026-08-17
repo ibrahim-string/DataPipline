@@ -41,7 +41,7 @@ export default function LandingPage() {
             <span className="flex h-6 w-6 items-center justify-center rounded bg-accent/15 text-[11px] font-bold text-accent">
               EL
             </span>
-            Omakase ELA Lab
+            ELA Lab
           </div>
           <nav className="flex items-center gap-4 text-sm text-ink-muted">
             <Link href="/architecture" className="hover:text-ink">
@@ -67,7 +67,7 @@ export default function LandingPage() {
           />
           <div className="relative mx-auto max-w-6xl px-4 py-20 sm:py-28">
             <div className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-ink-dim">
-              Embodied Learning from Action · independent proof of concept
+              Embodied Learning from Action · an independent build for Omakase Robotics
             </div>
 
             <h1 className="mt-6 max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
@@ -80,6 +80,16 @@ export default function LandingPage() {
               built to show how raw telemetry becomes a dataset a model can
               actually be trained on, and how bad data gets caught before it gets
               there.
+            </p>
+
+            <p className="mt-4 max-w-2xl border-l-2 border-accent/30 pl-4 text-sm leading-relaxed text-ink-muted">
+              I read the public Robotics Data Engineer role at Omakase Robotics, and
+              rather than claim I could learn the domain, I spent a few days building
+              a small version of the problem. This is that build —{' '}
+              <span className="text-ink-dim">
+                a personal project, made independently, with no affiliation to the
+                company.
+              </span>
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -210,10 +220,11 @@ export default function LandingPage() {
 
       <footer className="border-t border-line px-4 py-6">
         <p className="mx-auto max-w-6xl text-[11px] leading-relaxed text-ink-dim">
-          Independent portfolio project inspired by publicly available robotics
-          data-engineering challenges. Not affiliated with Omakase Robotics. No
-          proprietary data, APIs, branding or confidential information is used —
-          all telemetry, robots, sites and metrics on this site are synthetic.
+          An independent project built by Ibrahim, inspired by publicly available
+          robotics data-engineering challenges. Not affiliated with, endorsed by, or
+          produced for Omakase Robotics in any official capacity. No proprietary data,
+          APIs, branding or confidential information is used — all telemetry, robots,
+          sites and metrics on this site are synthetic.
         </p>
       </footer>
     </div>

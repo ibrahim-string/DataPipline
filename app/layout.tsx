@@ -7,16 +7,18 @@ const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin']
 
 export const metadata: Metadata = {
   title: {
-    default: 'Omakase ELA Lab',
-    template: '%s · Omakase ELA Lab',
+    default: 'ELA Lab — an independent build for Omakase Robotics',
+    template: '%s · ELA Lab',
   },
   description:
-    'An independent proof-of-concept demonstrating an end-to-end robotics data pipeline for collecting, validating, synchronizing, scoring and versioning multimodal robot experience.',
-  applicationName: 'Omakase ELA Lab',
-  authors: [{ name: 'Ibrahim' }],
+    'An end-to-end robotics data pipeline for collecting, validating, synchronizing, scoring and versioning multimodal robot experience. Built independently by Ibrahim after reading the public Robotics Data Engineer role at Omakase Robotics. Not affiliated with Omakase Robotics; all data is synthetic.',
+  applicationName: 'ELA Lab',
+  authors: [{ name: 'Ibrahim', url: 'https://github.com/ibrahim-string' }],
+  creator: 'Ibrahim',
   openGraph: {
-    title: 'Omakase ELA Lab',
-    description: 'From robot experience to training-ready data.',
+    title: 'ELA Lab — an independent build for Omakase Robotics',
+    description:
+      'From robot experience to training-ready data. An independent proof-of-concept by Ibrahim.',
     type: 'website',
   },
 };
