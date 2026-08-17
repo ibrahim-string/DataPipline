@@ -11,6 +11,9 @@ poison a model.
 I built it independently, in my own time, after reading the public Robotics Data Engineer job
 description at Omakase Robotics.
 
+**▶ Live: [data-pipline.vercel.app](https://data-pipline.vercel.app)** — open *Live Simulator* and
+press **Run 45-second demo**.
+
 > **This is a personal project.** It is **not affiliated with, endorsed by, or produced for Omakase
 > Robotics** in any official capacity. No proprietary data, APIs, logos, branding or confidential
 > information is used. Every robot, site, episode and metric in this repository is synthetic and
@@ -22,7 +25,7 @@ description at Omakase Robotics.
 
 | | |
 | --- | --- |
-| **Watch it work** | Open the [live demo](#demo) → **Live Simulator** → **Run 45-second demo**. A clean episode degrades in real time — camera dropout, clock drift, LiDAR dropout, invalid values — and gets **rejected with reasons**. Nothing is faked: the browser runs the real pipeline on the real stream. |
+| **Watch it work** | [data-pipline.vercel.app](https://data-pipline.vercel.app) → **Live Simulator** → **Run 45-second demo**. A clean episode degrades in real time — camera dropout, clock drift, LiDAR dropout, invalid values — and gets **rejected with reasons**. Nothing is faked: the browser runs the real pipeline on the real stream. |
 | **The code that matters** | [`lib/pipeline/`](lib/pipeline) — eight modules, no framework imports, [107 tests](tests). Start with [`quality.ts`](lib/pipeline/quality.ts) (the accept/reject decision) or [`sync.ts`](lib/pipeline/sync.ts) (the hardest part). |
 | **The two bugs worth reading about** | [Why I built this](#why-i-built-this), below. A synchronization method that provably *could not* detect clock drift, and a data-quality check that fired on 121 of 200 episodes. Finding those was the actual work. |
 | **What I'm not claiming** | [Limitations](#limitations). Synthetic data, no ROS 2, no model trained, experiment metrics simulated and labelled as such in the UI itself. |
@@ -77,13 +80,9 @@ them is the actual work, and that is what I wanted to demonstrate.
 
 ## Demo
 
-### ▶ **[Open the live demo](https://REPLACE-ME.vercel.app)**
+### ▶ **[data-pipline.vercel.app](https://data-pipline.vercel.app)**
 
-<!-- TODO(Ibrahim): deploy to Vercel, then replace the URL above AND the one in the
-     "If you only have a minute" table link target. This is the first thing a
-     reader clicks — do not ship the repo with the placeholder still in it. -->
-
-_(Not deployed yet? Run it locally in three commands — see [Running locally](#running-locally).)_
+_Or run it locally in three commands — see [Running locally](#running-locally)._
 
 Open **Live Simulator → Run 45-second demo**. A scripted fault sequence plays out in real time:
 
